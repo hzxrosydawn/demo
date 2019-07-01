@@ -59,6 +59,11 @@
     <!-- spring-boot-starter-parent 中已经包含了关于JDK版本和编码的配置 -->
     <properties>
         <spring.boot.version>2.1.4.RELEASE</spring.boot.version>
+        <lombok.version>1.18.8</lombok.version>
+        <jsonwebtoken.jjwt.version>0.9.1</jsonwebtoken.jjwt.version>
+        <druid.version>1.1.10</druid.version>
+        <spring.cloud.version></spring.cloud.version>
+        <swagger-annotations.version>1.5.22</swagger-annotations.version>
     </properties>
 
     <!-- Add typical dependencies for an application -->
@@ -67,6 +72,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>easyexcel</artifactId>
             <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger-annotations.version}</version>
         </dependency>
 
         <!--spring-boot-starter-web包含了Spring Boot预定义的一些Web开发的常用依赖包如: spring-webmvc,Tomcat等-->
@@ -131,6 +141,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -200,7 +217,7 @@
         </plugins>
     </build>
 
-    <!-- Add Spring repositories -->
+    <!-- 使用Spring Boot的正式版时无需下面的Spring Boot的repository配置 -->
     <repositories>
         <repository>
             <id>spring-milestones</id>

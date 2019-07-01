@@ -3,3 +3,9 @@ server:
   port: 8080
   servlet:
     context-path: /hello
+
+
+# relocate the static resources in /resources/ directory
+spring:
+  mvc:
+    static-path-pattern: /resources/**

@@ -59,11 +59,11 @@
     <!-- spring-boot-starter-parent 中已经包含了关于JDK版本和编码的配置 -->
     <properties>
         <spring.boot.version>2.1.4.RELEASE</spring.boot.version>
-        <lombok.version>1.18.8</lombok.version>
-        <jsonwebtoken.jjwt.version>0.9.1</jsonwebtoken.jjwt.version>
         <druid.version>1.1.10</druid.version>
         <spring.cloud.version></spring.cloud.version>
+        <jsonwebtoken.jjwt.version>0.9.1</jsonwebtoken.jjwt.version>
         <swagger-annotations.version>1.5.22</swagger-annotations.version>
+        <lombok.version>1.18.8</lombok.version>
     </properties>
 
     <!-- Add typical dependencies for an application -->
@@ -78,11 +78,34 @@
             <artifactId>swagger-annotations</artifactId>
             <version>${swagger-annotations.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
         <!--spring-boot-starter-web包含了Spring Boot预定义的一些Web开发的常用依赖包如: spring-webmvc,Tomcat等-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--如果需要部署到其他Web容器中，则指定spring-boot-starter-tomcat的scope为provided，就不会打包到war包中-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- 用于编译JSP -->
+        <!--<dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+        </dependency>-->
+        <!-- 页面技术使用thymeleaf实现 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
         <!-- 用户加解密的依赖。如果使用 @SpringBootApplication或@EnableAutoConfiguration注解允许在整个Spring环境（系统变量、
@@ -105,18 +128,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!--如果需要部署到其他Web容器中，则指定spring-boot-starter-tomcat的scope为provided，就不会打包到war包中-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <!-- 用于编译JSP -->
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <scope>provided</scope>
-        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -141,13 +153,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

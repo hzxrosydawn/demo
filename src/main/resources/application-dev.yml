@@ -3,3 +3,18 @@ server:
   port: 8080
   servlet:
     context-path: /hello
+
+# relocate the static resources in /resources/ directory
+spring:
+  mvc:
+    static-path-pattern: /resources/**
+  thymeleaf:  # default thymeleaf configuration
+    enabled: true
+    prefix: classpath:/templates/
+    mode: HTML
+    suffix: .html
+    encoding: UTF-8
+    cache: false  # 默认是开启缓存，但开发阶段为了快速看到修改效果应设置为false。spring-boot-devtools会自动应用开发时敏感的配置（参考DevToolsPropertyDefaultsPostProcessor）
+  http:
+    log-request-details: true # 默认为false，不打印请求详情。开发阶段可以开启此选项来打印出请求的详情，方便调试
+

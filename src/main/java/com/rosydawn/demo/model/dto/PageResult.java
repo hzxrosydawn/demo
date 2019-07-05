@@ -21,20 +21,26 @@ public class PageResult<T> {
     private int code;
 
     private String msg;
+
     /**
      * 总数量, bootstrapTable是total
      */
-    private long total;
+    private long totalCount;
 
     /**
-     * 每页数量大小
+     * 总页数
      */
-    private int pageSize;
+    private int totalPages;
 
     /**
      * 第几页
      */
     private int pageNum;
+
+    /**
+     * 每页数量大小
+     */
+    private int pageSize;
 
     /**
      * 当前数据, bootstrapTable是rows

@@ -18,4 +18,5 @@ spring:
     cache: false  # 默认是开启缓存，但开发阶段为了快速看到修改效果应设置为false。spring-boot-devtools会自动应用开发时敏感的配置（参考DevToolsPropertyDefaultsPostProcessor）
   http:
     log-request-details: true # 默认为false，不打印请求详情。开发阶段可以开启此选项来打印出请求的详情，方便调试
+  security: # 配置Spring Security
 

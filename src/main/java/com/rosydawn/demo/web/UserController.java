@@ -3,8 +3,8 @@ package com.rosydawn.demo.web;
 import com.rosydawn.demo.model.User;
 import com.rosydawn.demo.model.dto.GenericResult;
 import io.swagger.annotations.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -94,12 +94,9 @@ import org.springframework.web.bind.annotation.RestController;
 @Api
 @RestController
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	/**
-	 * 映射"/hello"请求
-	 */
 	@ApiOperation(value = "添加消息", notes = "进入欢迎页面")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "id", value = "消息 ID", required = true, dataType = "Long", paramType = "query"),
@@ -114,13 +111,15 @@ public class UserController {
 			@ApiResponse(code = 200, message = "服务器内部错误")
 	})
 
-	@RequestMapping("/{userId}")
+	@GetMapping("/{userId}")
 	public GenericResult<User> getUser(@PathVariable Long userId){
+		log.info("getUser method parameter userId:", userId);
 		User user = new User();
-		user.setLogicId(1L);
-		user.setUserName("张飞");
+		user.setLogicId(userId);
+		user.setName("张飞");
 		user.setDeptId(1L);
 		user.setEmail("shuhan.zhanfei@sanguo.com");
+
 		GenericResult<User> getUserResult = new GenericResult<>();
 		getUserResult.setCode(0);
 		getUserResult.setMsg("操作成功");

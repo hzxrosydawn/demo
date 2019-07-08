@@ -61,7 +61,7 @@
         <spring.boot.version>2.1.4.RELEASE</spring.boot.version>
         <druid.version>1.1.10</druid.version>
         <spring.cloud.version></spring.cloud.version>
-        <jsonwebtoken.jjwt.version>0.9.1</jsonwebtoken.jjwt.version>
+        <jsonwebtoken.version>0.9.1</jsonwebtoken.version>
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
         <lombok.version>1.18.8</lombok.version>
     </properties>
@@ -113,6 +113,24 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jsonwebtoken.version}</version>
         </dependency>
 
         <!-- 用户加解密的依赖。如果使用 @SpringBootApplication或@EnableAutoConfiguration注解允许在整个Spring环境（系统变量、

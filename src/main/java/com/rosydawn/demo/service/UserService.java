@@ -3,6 +3,7 @@ package com.rosydawn.demo.service;
 import com.rosydawn.demo.model.Role;
 import com.rosydawn.demo.model.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @auther: Vincent Huang
  * Created on 2019/7/5 9:29
  */
-public interface UserService {
+public interface UserService extends UserDetailsService {
     User getUserById(Long logicId);
     List<Role> getUserRolesById(Long id);
     List<User> getAllUsers();

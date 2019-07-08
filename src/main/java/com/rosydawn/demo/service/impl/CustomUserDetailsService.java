@@ -2,13 +2,16 @@ package com.rosydawn.demo.service.impl;
 
 import com.rosydawn.demo.dao.UserRepository;
 import com.rosydawn.demo.model.User;
+import com.rosydawn.demo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @auther: Vincent Huang
@@ -16,7 +19,7 @@ import javax.annotation.Resource;
  */
 @Component
 @Slf4j
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserService {
     @Resource
     private UserRepository userRepository;
 
@@ -27,7 +30,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("Email does not exists!");
         }
-        log.info("Get User:", user);
-        return user;
+
+        List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
+        simpleGrantedAuthorities.add(new SimpleGrantedAuthority("USER"));
+        org.springframework.security.core.userdetails.User user1 =
+                new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), simpleGrantedAuthorities);
+        log.info("Get User:", user1);
+        return user1;
     }
+
 }

@@ -19,4 +19,22 @@ spring:
   http:
     log-request-details: true # 默认为false，不打印请求详情。开发阶段可以开启此选项来打印出请求的详情，方便调试
   security: # 配置Spring Security
-
+  datasource:
+    druid:
+      driverClassName:
+      url:
+      username:
+      password:
+      initialSize:
+      minIdle:
+      maxActive:
+      maxWait:
+      timeBetweenEvictionRunsMillis:
+      minEvictableIdleTimeMillis:
+      validationQuery:
+      testWhileIdle:
+      testOnBorrow:
+      testOnReturn:
+      poolPreparedStatements:
+      maxPoolPreparedStatementPerConnectionSize:
+      filters:

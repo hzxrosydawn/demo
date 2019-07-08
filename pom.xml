@@ -59,11 +59,13 @@
     <!-- spring-boot-starter-parent 中已经包含了关于JDK版本和编码的配置 -->
     <properties>
         <spring.boot.version>2.1.4.RELEASE</spring.boot.version>
-        <druid.version>1.1.10</druid.version>
+        <druid.version>1.1.18</druid.version>
         <spring.cloud.version></spring.cloud.version>
         <jsonwebtoken.version>0.9.1</jsonwebtoken.version>
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
         <lombok.version>1.18.8</lombok.version>
+        <kaptcha.version>2.3.2</kaptcha.version>
+        <thymeleaf-springsecurity4.version>3.0.4.RELEASE</thymeleaf-springsecurity4.version>
     </properties>
 
     <!-- Add typical dependencies for an application -->
@@ -117,6 +119,7 @@
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+            <version>${thymeleaf-springsecurity4.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -132,6 +135,23 @@
             <artifactId>jjwt</artifactId>
             <version>${jsonwebtoken.version}</version>
         </dependency>
+        <!-- 验证码 -->
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>${kaptcha.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.18</version>
+        </dependency>
 
         <!-- 用户加解密的依赖。如果使用 @SpringBootApplication或@EnableAutoConfiguration注解允许在整个Spring环境（系统变量、
         环境变量、命令行属性、以及配置属性等）中就可以使用加密的属性值。 -->
@@ -139,11 +159,6 @@
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>2.1.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
         <!--
@@ -187,6 +202,25 @@
     </dependencies>
 
     <build>
+        <finalName>demo</finalName>
+        <!-- 打包时拷贝MyBatis的映射文件 -->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/mapping/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -3,7 +3,7 @@
 <mapper namespace="com.wf.ew.system.dao.UserMapper">
 
     <select id="selectByUsername" resultType="com.wf.ew.system.model.User">
-        select * from sys_user where username=#{username}
+        select * from sys_user where userEmail=#{userEmail}
     </select>
 
     <select id="listFull" resultType="com.wf.ew.system.model.User">
@@ -16,8 +16,8 @@
             <if test="page.pageData.nickName!=null">
                 and a.nick_name like '%${page.pageData.nickName}%'
             </if>
-            <if test="page.pageData.username!=null">
-                and a.username like '%${page.pageData.username}%'
+            <if test="page.pageData.userEmail!=null">
+                and a.userEmail like '%${page.pageData.userEmail}%'
             </if>
             <if test="page.pageData.state!=null">
                 and a.state =#{page.pageData.state}

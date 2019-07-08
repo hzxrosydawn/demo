@@ -123,6 +123,11 @@
             <version>2.1.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!--
             spring-boot-devtools 模块可以included到任何模块中，以提供development-time特性（如热部署、自动禁用缓存等）。
             在运行一个完整的，打包过的应用时，开发者工具（devtools） 会被自动禁用。如果应用使用 java -jar 或特殊的类加载器启动，都会

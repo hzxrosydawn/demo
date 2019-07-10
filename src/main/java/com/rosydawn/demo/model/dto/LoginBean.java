@@ -1,4 +1,4 @@
-package com.rosydawn.demo.model.vo;
+package com.rosydawn.demo.model.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

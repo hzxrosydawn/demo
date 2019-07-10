@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.louis.mango.admin.model.SysUserRole;
 
 public interface SysUserRoleMapper {
     int deleteByPrimaryKey(Long id);

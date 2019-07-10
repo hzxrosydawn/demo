@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * 分页结果对象,这里以layui框架的table为标准
+ * 通用的分页结果
  *
  * @auther: Vincent
  * Date: 2019/7/2
@@ -15,13 +15,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class PageResult<T> {
-    /**
-     * 状态码, 0表示成功
-     */
-    private int code;
-
-    private String msg;
-
     /**
      * 总数量, bootstrapTable是total
      */
@@ -43,7 +36,7 @@ public class PageResult<T> {
     private int pageSize;
 
     /**
-     * 当前数据, bootstrapTable是rows
+     * 当前页的数据列表
      */
     private List<T> data;
 }

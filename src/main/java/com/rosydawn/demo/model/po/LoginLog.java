@@ -1,6 +1,8 @@
-package com.rosydawn.demo.model;
+package com.rosydawn.demo.model.po;
 
-public class SysLoginLog extends BaseModel {
+import com.rosydawn.demo.model.BaseModel;
+
+public class LoginLog extends BaseModel {
 
     private String userName;
 

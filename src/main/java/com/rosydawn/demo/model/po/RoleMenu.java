@@ -1,6 +1,6 @@
-package com.rosydawn.demo.model;
+package com.rosydawn.demo.model.po;
 
-public class SysRoleMenu extends BaseModel {
+public class RoleMenu {
 
     private Long roleId;
 

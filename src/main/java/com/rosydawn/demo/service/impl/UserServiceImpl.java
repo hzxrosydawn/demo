@@ -1,11 +1,9 @@
 package com.rosydawn.demo.service.impl;
 
 import com.rosydawn.demo.dao.UserRepository;
-import com.rosydawn.demo.model.Role;
-import com.rosydawn.demo.model.User;
+import com.rosydawn.demo.security.JwtUserDetails;
 import com.rosydawn.demo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -22,57 +20,42 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public List<Role> getUserRolesById(Long id) {
+    public Long add(JwtUserDetails jwtUserDetails) {
         return null;
     }
 
     @Override
-    public List<GrantedAuthority> getUserRolesByUserId(Long id) {
+    public JwtUserDetails getByUsername(String username) {
         return null;
     }
 
     @Override
-    public User getUserById(Long userId) {
+    public JwtUserDetails getByUserId(Long logicId) {
         return null;
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<JwtUserDetails> getAllUsers() {
         return null;
     }
 
     @Override
-    public User getUserByEmail(String userEmail) {
+    public List<String> getAuthorityListByUsername(String username) {
         return null;
     }
 
     @Override
-    public Long addUser(User user) {
+    public Long updateUser(JwtUserDetails jwtUserDetails) {
         return null;
     }
 
     @Override
-    public Long updateUser(User user) {
+    public Long deleteById(Long userId) {
         return null;
     }
 
     @Override
-    public Long addUsers(List<User> userList) {
-        return null;
-    }
-
-    @Override
-    public Long updateUsers(List<User> userList) {
-        return null;
-    }
-
-    @Override
-    public Long deleteUserById(Long userId) {
-        return null;
-    }
-
-    @Override
-    public Long deleteUserByEmail(String userEmail) {
+    public Long deleteByEmail(String userEmail) {
         return null;
     }
 }

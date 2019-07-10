@@ -1,6 +1,8 @@
-package com.rosydawn.demo.model;
+package com.rosydawn.demo.model.po;
 
-public class SysConfig extends BaseModel {
+import com.rosydawn.demo.model.BaseModel;
+
+public class Dict extends BaseModel {
 
     private String value;
 

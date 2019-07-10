@@ -1,6 +1,6 @@
 package com.rosydawn.demo.dao;
 
-import com.rosydawn.demo.model.User;
+import com.rosydawn.demo.security.JwtUserDetails;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserRepository {
-    User findUserByEmail(String email);
+    JwtUserDetails findUserByEmail(String email);
 }

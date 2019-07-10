@@ -64,7 +64,7 @@ import java.io.Serializable;
 @RequiredArgsConstructor(staticName = "of")
 @AllArgsConstructor
 @ApiModel(description = "响应对象")
-public class GenericResult<T> implements Serializable {
+public class Result<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private static final int SUCCESS_CODE = 200;
@@ -80,27 +80,30 @@ public class GenericResult<T> implements Serializable {
     @ApiModelProperty(value = "响应消息", name = "msg", required = true, example = SUCCESS_MESSAGE)
     private String msg;
 
+    /**
+     * 可以分页数据或其他数据
+     */
     @ApiModelProperty(value = "响应数据", name = "data")
     private T data;
 
     /**
      * 成功的返回
      */
-    public static GenericResult ok() {
-        return new GenericResult(SUCCESS_CODE, SUCCESS_MESSAGE);
+    public static Result ok() {
+        return new Result(SUCCESS_CODE, SUCCESS_MESSAGE);
     }
 
     /**
      * 成功的返回
      */
-    public static GenericResult ok(String msg) {
-        return new GenericResult(SUCCESS_CODE, msg);
+    public static Result ok(String msg) {
+        return new Result(SUCCESS_CODE, msg);
     }
 
     /**
      * 服务器失败的返回
      */
-    public static GenericResult serverError(String msg) {
-        return new GenericResult(ERROR_CODE, ERROR_MESSAGE);
+    public static Result serverError(String msg) {
+        return new Result(ERROR_CODE, ERROR_MESSAGE);
     }
 }

@@ -1,6 +1,6 @@
-package com.rosydawn.demo.model;
+package com.rosydawn.demo.model.po;
 
-public class SysRoleDept extends BaseModel {
+public class RoleDept {
 
     private Long roleId;
 

@@ -1,4 +1,8 @@
 package com.rosydawn.demo.security;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
@@ -7,6 +11,9 @@ import org.springframework.security.core.GrantedAuthority;
  * @author Vincent Huang
  * @date July 8, 2019
  */
+@ToString
+@Setter
+@Getter
 public class GrantedAuthorityImpl implements GrantedAuthority {
 	
 	private static final long serialVersionUID = 1L;
@@ -15,14 +22,5 @@ public class GrantedAuthorityImpl implements GrantedAuthority {
 
     public GrantedAuthorityImpl(String authority) {
         this.authority = authority;
-    }
-
-    public void setAuthority(String authority) {
-        this.authority = authority;
-    }
-
-    @Override
-    public String getAuthority() {
-        return this.authority;
     }
 }

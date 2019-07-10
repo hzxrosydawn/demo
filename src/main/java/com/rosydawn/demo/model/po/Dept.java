@@ -1,8 +1,10 @@
-package com.rosydawn.demo.model;
+package com.rosydawn.demo.model.po;
+
+import com.rosydawn.demo.model.BaseModel;
 
 import java.util.List;
 
-public class SysDept extends BaseModel {
+public class Dept extends BaseModel {
 
     private String name;
     
@@ -12,7 +14,7 @@ public class SysDept extends BaseModel {
 
     private Byte delFlag;
     // 非数据库字段
-    private List<SysDept> children;
+    private List<Dept> children;
     // 非数据库字段
     private String parentName;
     // 非数据库字段
@@ -42,10 +44,10 @@ public class SysDept extends BaseModel {
 	public void setDelFlag(Byte delFlag) {
 		this.delFlag = delFlag;
 	}
-	public List<SysDept> getChildren() {
+	public List<Dept> getChildren() {
 		return children;
 	}
-	public void setChildren(List<SysDept> children) {
+	public void setChildren(List<Dept> children) {
 		this.children = children;
 	}
 	public String getParentName() {

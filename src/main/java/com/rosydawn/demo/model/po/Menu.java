@@ -1,8 +1,10 @@
-package com.rosydawn.demo.model;
+package com.rosydawn.demo.model.po;
+
+import com.rosydawn.demo.model.BaseModel;
 
 import java.util.List;
 
-public class SysMenu extends BaseModel {
+public class Menu extends BaseModel {
 
     private Long parentId;
 
@@ -25,7 +27,7 @@ public class SysMenu extends BaseModel {
     // 非数据库字段
     private Integer level;
     // 非数据库字段
-    private List<SysMenu> children;
+    private List<Menu> children;
     
 	public Long getParentId() {
 		return parentId;
@@ -91,11 +93,11 @@ public class SysMenu extends BaseModel {
 		this.delFlag = delFlag;
 	}
 
-	public List<SysMenu> getChildren() {
+	public List<Menu> getChildren() {
 		return children;
 	}
 
-	public void setChildren(List<SysMenu> children) {
+	public void setChildren(List<Menu> children) {
 		this.children = children;
 	}
 

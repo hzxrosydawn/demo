@@ -2,7 +2,7 @@ package com.rosydawn.demo.utils;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.rosydawn.demo.security.JwtAuthenticatioToken;
+import com.rosydawn.demo.security.token.JwtAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,8 +25,11 @@ public class SecurityUtils {
 	 * @param authenticationManager
 	 * @return
 	 */
-	public static JwtAuthenticatioToken login(HttpServletRequest request, String username, String password, AuthenticationManager authenticationManager) {
-		JwtAuthenticatioToken token = new JwtAuthenticatioToken(username, password);
+	public static JwtAuthenticationToken login(HttpServletRequest request,
+											   String username,
+											   String password,
+											   AuthenticationManager authenticationManager) {
+		JwtAuthenticationToken token = new JwtAuthenticationToken(username, password);
 		token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 		// 执行登录认证过程
 	    Authentication authentication = authenticationManager.authenticate(token);

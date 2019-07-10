@@ -1,8 +1,8 @@
 package com.rosydawn.demo.web;
 
 import com.google.code.kaptcha.Producer;
-import com.rosydawn.demo.model.User;
-import com.rosydawn.demo.model.dto.GenericResult;
+import com.rosydawn.demo.security.JwtUserDetails;
+import com.rosydawn.demo.model.dto.Result;
 import com.rosydawn.demo.service.UserService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
@@ -131,9 +131,9 @@ public class HomeController {
 	}
 
 	@PostMapping("/register")
-	public String doRegister(User user){
+	public String doRegister(JwtUserDetails jwtUserDetails){
 		// 此处省略校验逻辑
-		userService.addUser(user);
+		userService.addUser(jwtUserDetails);
 		return "redirect:register?success";
 	}
 
@@ -157,18 +157,18 @@ public class HomeController {
 	})
 
 	@GetMapping("/{userId}")
-	public GenericResult<User> getUser(@PathVariable Long userId){
+	public Result<JwtUserDetails> getUser(@PathVariable Long userId){
 		log.info("getUser method parameter userId:", userId);
-		User user = new User();
-		user.setLogicId(userId);
-		user.setName("张飞");
-		user.setDeptId(1L);
-		user.setEmail("shuhan.zhanfei@sanguo.com");
+		JwtUserDetails jwtUserDetails = new JwtUserDetails();
+		jwtUserDetails.setLogicId(userId);
+		jwtUserDetails.setName("张飞");
+		jwtUserDetails.setDeptId(1L);
+		jwtUserDetails.setEmail("shuhan.zhanfei@sanguo.com");
 
-		GenericResult<User> getUserResult = new GenericResult<>();
+		Result<JwtUserDetails> getUserResult = new Result<>();
 		getUserResult.setCode(0);
 		getUserResult.setMsg("操作成功");
-		getUserResult.setData(user);
+		getUserResult.setData(jwtUserDetails);
 		return getUserResult;
 	}
 

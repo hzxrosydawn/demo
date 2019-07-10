@@ -18,8 +18,8 @@
         <!-- 这个会打印出所有的info及以上级别的日志（OFF > FATAL > ERROR > WARN > INFO）。
         每次大小超过size，则这size大小的日志会自动存入按年-月-日建立的文件夹下面。
         fileName属性指定实时日志文件输出路径，而filePattern属性指定归档日志文件路径模式。-->
-        <RollingFile name="RollingFileAppender" fileName="${sys:user.home}/logs/myApp.log"
-                     filePattern="${sys:user.home}/logs/myApp/$${date:yyyy-MM-dd}/myApp-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="RollingFileAppender" fileName="${sys:jwtUserDetails.home}/logs/myApp.log"
+                     filePattern="${sys:jwtUserDetails.home}/logs/myApp/$${date:yyyy-MM-dd}/myApp-%d{yyyy-MM-dd}-%i.log">
             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
             <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>

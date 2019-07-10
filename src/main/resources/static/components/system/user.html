@@ -110,7 +110,7 @@
         // 渲染表格
         var insTb = tableX.render({
             elem: '#userTable',
-            url: config.base_server + 'user',
+            url: config.base_server + 'jwtUserDetails',
             where: {
                 access_token: config.getToken().access_token
             },
@@ -162,7 +162,7 @@
                 }, function (i) {
                     layer.close(i);
                     layer.load(2);
-                    admin.req('user/' + obj.data.userId, {}, function (data) {
+                    admin.req('jwtUserDetails/' + obj.data.userId, {}, function (data) {
                         layer.closeAll('loading');
                         if (data.code == 200) {
                             layer.msg(data.msg, {icon: 1});
@@ -178,7 +178,7 @@
                 }, function (i) {
                     layer.close(i);
                     layer.load(2);
-                    admin.req('user/psw/' + obj.data.userId, {}, function (data) {
+                    admin.req('jwtUserDetails/psw/' + obj.data.userId, {}, function (data) {
                         layer.closeAll('loading');
                         if (data.code == 200) {
                             layer.msg(data.msg, {icon: 1});
@@ -195,7 +195,7 @@
         // 修改user状态
         form.on('switch(ckState)', function (obj) {
             layer.load(2);
-            admin.req('user/state', {
+            admin.req('jwtUserDetails/state', {
                 userId: obj.elem.value,
                 state: obj.elem.checked ? 0 : 1
             }, function (data) {
@@ -240,7 +240,7 @@
                     form.on('submit(userFormSubmit)', function (d) {
                         d.field.roleIds = formSelects.value('selRole', 'valStr');
                         layer.load(2);
-                        admin.req('user', d.field, function (res) {
+                        admin.req('jwtUserDetails', d.field, function (res) {
                             layer.closeAll('loading');
                             if (res.code == 200) {
                                 layer.msg(res.msg, {icon: 1});

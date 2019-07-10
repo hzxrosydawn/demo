@@ -23,13 +23,13 @@ public final class SpringSecurityUtil {
         return temp;
     }
 
-    public static JwtUser getJwtUser(){
+    public static JwtUserDetails getJwtUser(){
         Authentication  authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication.getClass().isAssignableFrom(AnonymousAuthenticationToken.class)){
             return null;
         }else{
-            JwtUser info = (JwtUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            return info;
+            JwtUserDetails jwtUserDetails = (JwtUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            return jwtUserDetails;
         }
 
     }

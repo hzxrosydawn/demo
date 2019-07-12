@@ -1,8 +1,10 @@
-package com.rosydawn.demo.security.service;
+package com.rosydawn.demo.service.impl;
 
+import com.rosydawn.demo.model.po.User;
 import com.rosydawn.demo.security.JwtUserDetails;
 import com.rosydawn.demo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,15 +27,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public JwtUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("用户名：{}", username);
-        JwtUserDetails jwtUserDetails = userService.getByUsername(username);
+    public JwtUserDetails loadUserByUsername(String loginName) throws UsernameNotFoundException, DataAccessException {
+        log.info("Method login name parameter ：{}", loginName);
+        User user = userService.getByUsername(loginName);
 
-        if (jwtUserDetails == null) {
-            throw new UsernameNotFoundException("用户名 " + username + " does not exists!");
+        if (user == null) {
+            throw new UsernameNotFoundException("The login name '" + loginName + "' does not exists!");
         }
-        log.info("Get JwtUserDetails:", jwtUserDetails);
-        jwtUserDetails.set
+        log.info("Get User:", user);
+
+        JwtUserDetails jwtUserDetails = new JwtUserDetails();
+        // TODO 配置jwtUserDetails的用户权限和帐号信息
+
         return jwtUserDetails;
     }
 }

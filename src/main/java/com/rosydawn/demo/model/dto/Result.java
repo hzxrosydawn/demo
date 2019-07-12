@@ -67,17 +67,12 @@ import java.io.Serializable;
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private static final int SUCCESS_CODE = 200;
-    private static final String SUCCESS_MESSAGE = "操作成功";
-    private static final int ERROR_CODE = 500;
-    private static final String ERROR_MESSAGE = "操作失败";
+    @NonNull
+    @ApiModelProperty(value = "响应码", name = "code", required = true, example = "200")
+    private long code;
 
     @NonNull
-    @ApiModelProperty(value = "响应码", name = "code", required = true, example = "" + SUCCESS_CODE)
-    private int code;
-
-    @NonNull
-    @ApiModelProperty(value = "响应消息", name = "msg", required = true, example = SUCCESS_MESSAGE)
+    @ApiModelProperty(value = "响应消息", name = "msg", required = true, example = "登录成功")
     private String msg;
 
     /**

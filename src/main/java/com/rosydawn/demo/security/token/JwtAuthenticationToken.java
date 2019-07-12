@@ -6,7 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.GrantedAuthority;
 
 /**
- * 自定义JWT Token
+ * 自定义 JWT Token
  *
  * @auther: Vincent Huang
  * Created on 2019/7/10 13:57

@@ -1,7 +1,7 @@
 package com.rosydawn.demo.exception;
 
 
-import com.rosydawn.demo.constants.CodeMsg;
+import com.rosydawn.demo.constants.enums.BusinessCodeMsgEnum;
 
 /**
  * 强制业务异常必须提供 code 码，便于统一维护
@@ -10,20 +10,20 @@ import com.rosydawn.demo.constants.CodeMsg;
  * Created on 2019/7/8 9:24
  */
 public class BusinessException extends RuntimeException {
-    private final CodeMsg msg;
+    private final BusinessCodeMsgEnum msg;
 
     private Object data;
 
-    public BusinessException(CodeMsg msg){
+    public BusinessException(BusinessCodeMsgEnum msg){
         this.msg = msg;
     }
 
-    public BusinessException(CodeMsg msg,Object data){
+    public BusinessException(BusinessCodeMsgEnum msg, Object data){
         this.msg = msg;
         this.data = data;
     }
 
-    public CodeMsg getMsg() {
+    public BusinessCodeMsgEnum getMsg() {
         return msg;
     }
 

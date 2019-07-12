@@ -1,37 +1,30 @@
 package com.rosydawn.demo.model.po;
 
-import com.rosydawn.demo.model.BaseModel;
+import com.rosydawn.demo.constants.enums.LoginResultEnum;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class LoginLog extends BaseModel {
+import java.util.Date;
 
-    private String userName;
+/**
+ * 用户组
+ *
+ * @auther: Vincent Huang
+ * Created on 2019/7/10 16:14
+ */
+@Data
+@NoArgsConstructor
+public class LoginLog {
 
-    private String status;
+    private String emailName;
 
-    private String ip;
+    private LoginResultEnum loginResultEnum;
 
-	public String getUserName() {
-		return userName;
-	}
+	private String loginIp;
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+	private String localIp;
 
-	public String getStatus() {
-		return status;
-	}
+	private User creator;
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-
+	private Date createTime;
 }

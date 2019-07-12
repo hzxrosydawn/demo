@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // 使用自定义身份验证组件
+        // 添加一个自定义身份验证组件
         auth.authenticationProvider(new JwtAuthenticationProvider(userDetailsService));
     }
 

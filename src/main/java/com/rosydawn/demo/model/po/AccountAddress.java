@@ -14,12 +14,17 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
-public class Dept {
+public class AccountAddress {
     private Long logicId;
 
-    private String name;
+    private Account account;
 
-    private String remark;
+    /**
+     * 帐号需要访问的服务器IP地址
+     */
+    private String address;
+
+    private String port;
 
     private BooleanEnum deletedEnum;
 
@@ -30,4 +35,5 @@ public class Dept {
     private User modifier;
 
     private Date updateTime;
+
 }

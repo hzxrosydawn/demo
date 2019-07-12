@@ -95,16 +95,34 @@
         </dependency>
 
         <!--spring-boot-starter-web包含了Spring Boot预定义的一些Web开发的常用依赖包如: spring-webmvc,Tomcat等-->
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>-->
+
+        <!-- 从 spring-boot-starter-web 中去掉 logback 的依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        <!--如果需要部署到其他Web容器中，则指定spring-boot-starter-tomcat的scope为provided，就不会打包到war包中-->
+        <!-- spring-boot-starter-log4j2 使用 SL4J 和 Log4J2 来记录日志 -->
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
+        <!--如果需要部署到其他Web容器中，则指定spring-boot-starter-tomcat的scope为provided，就不会打包到war包中-->
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
-        </dependency>
+        </dependency>-->
         <!-- 用于编译JSP -->
         <!--<dependency>
             <groupId>org.apache.tomcat.embed</groupId>
@@ -118,8 +136,8 @@
         </dependency>
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
-            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
-            <version>${thymeleaf-springsecurity4.version}</version>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+            <version>3.0.4.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -148,10 +166,9 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.12</version>
         </dependency>
-
         <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
+            <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.18</version>
         </dependency>
 

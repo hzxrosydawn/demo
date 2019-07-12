@@ -7,34 +7,121 @@ server:
 
 # relocate the static resources in /resources/ directory
 spring:
-  mvc:
-    static-path-pattern: /resources/**
-  thymeleaf:  # default thymeleaf configuration
-    enabled: true
-    prefix: classpath:/templates/
-    mode: HTML
-    suffix: .html
-    encoding: UTF-8
-    cache: false  # 默认是开启缓存，但开发阶段为了快速看到修改效果应设置为false。spring-boot-devtools会自动应用开发时敏感的配置（参考DevToolsPropertyDefaultsPostProcessor）
-  http:
-    log-request-details: true # 默认为false，不打印请求详情。开发阶段可以开启此选项来打印出请求的详情，方便调试
-  security: # 配置Spring Security
   datasource:
     druid:
-      driverClassName:
+      #############################################
+      # 配置 druid 数据源常见必要配置
+      #############################################
       url:
+      # driver-class-name 可配可不配，如果不配置，druid 会根据 url 自动识别 dbType，然后选择相应的 driverClassName。建议配置下
+      driver-class-name: oracle.jdbc.driver.OracleDriver
       username:
+      # 密文密码。执行java -cp druid-1.0.16.jar com.alibaba.druid.filter.config.ConfigTools you_password可创建公私钥及密文
       password:
-      initialSize:
-      minIdle:
-      maxActive:
-      maxWait:
-      timeBetweenEvictionRunsMillis:
-      minEvictableIdleTimeMillis:
-      validationQuery:
-      testWhileIdle:
-      testOnBorrow:
-      testOnReturn:
-      poolPreparedStatements:
-      maxPoolPreparedStatementPerConnectionSize:
-      filters:
+      # 初始连接大小
+      initial-size: 10
+      # 最大连接大小
+      max-active: 50
+      # 最小连接数
+      min-idle: 10
+      #############################################
+      # druid 数据源其他配置
+      #############################################
+      # 是否缓存 preparedStatement，也就是 PSCache
+      # PSCache 对支持游标的数据库（如 Oracle）性能提升巨大，其他数据库配置为 false。分库分表较多的数据库，建议配置为 false
+      pool-prepared-statements: true
+      # 指定每个连接上 PSCache 的大小。去掉后监控界面sql无法统计
+      max-pool-prepared-statement-per-connection-size: 20
+      # 配置获取连接等待超时的时间，单位为毫秒
+      max-wait: 10000
+      # 验证连接可用与否的 SQL，可以通过以下三个以名称 test 开头属性配置何时进行检查。SELECT 1 FROM DUAL 用于Oracle
+      validation-query: SELECT 1 FROM DUAL
+      # 申请连接时执行 validationQuery 检测连接是否有效，做了这个配置会降低性能
+      test-on-borrow: false
+      # 归还连接时执行 validationQuery 检测连接是否有效，做了这个配置会降低性能
+      test-on-return: false
+      # 空闲时时执行 validationQuery 检测连接是否有效。空闲时间大于 timeBetweenEvictionRunsMillis 的连接会被执行 validationQuery 是否有效
+      test-while-idle: true
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 30000
+      # 指定 validationQuery 的超时时间，单位是毫秒
+      validation-query-timeout: 3000
+      #########################################################################################################
+      # filters 通过逗号分隔别名列表的方式配置扩展插件。常用的插件有：
+      #   stat，表示监控统计；
+      #   log4j、log4j2、slf4j、commonLogging 等表示使用日志记录 SQL 操作。如果这里要用，建议使用 slf4j；
+      #   wall，表示防止防御sql注入；
+      #   config，表示通过外部配置配置 druid。
+      # 所有可用的别名映射配置信息参考 druid-xxx.jar!/META-INF/druid-filter.properties
+      #########################################################################################################
+      filters: stat,wall,slf4j # 配置多个英文逗号分隔，filters使用 connectionProperties配置插件
+      # 配置connection-properties，启用RSA解密（512字节），这里不配置公钥，而是使用默认的公钥
+      # Druid的ConfigTools每次加密的私钥会发生变化，但公钥默认不变
+      connect-properties: config.decrypt=true
+      # 当然也可以通过config.decrypt.key配置引用的公钥
+      # connection-properties: config.decrypt=true;config.decrypt.key=${publickey}
+      # 监控配置
+      web-stat-filter:  # 监控WebStatFilter配置，说明请参考Druid Wiki
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+#        session-stat-enable:
+#        session-stat-max-count:
+#        principal-session-name:
+#        principal-cookie-name:
+#        profile-enable:
+      stat-view-servlet:  # StatViewServlet配置，说明请参考Druid Wiki
+        enabled: true #是否启用StatViewServlet（监控页面）默认值为false（考虑到安全问题默认并未启动，如需启用建议设置密码或白名单以保障安全）
+        reset-enable: false
+        url-pattern: /druid/*
+#        login-username: admin
+#        login-password: admin
+        # 添加IP白名单
+        #allow:
+        # 添加IP黑名单，当白名单和黑名单重复时，黑名单优先级更高
+        #deny:
+      # Spring监控配置
+      aop-patterns: com.rosydawn.demo # Spring监控AOP切入点，如x.y.z.service.*,配置多个英文逗号分隔
+      # 配置StatFilter
+      filter:
+        # 启动ConfigFilter
+        config:
+          enabled: true
+        stat:
+          enabled: true
+          db-type: AliOracle
+          log-slow-sql: true
+          slow-sql-millis: 3000
+          merge-sql: true
+        # 配置WallFilter
+        wall:
+          enabled:
+          db-type:
+          config:
+            delete-allow: false
+            drop-table-allow: false
+        slf4j:
+          enabled: true
+      # 合并多个DruidDataSource的监控数据
+      useGlobalDataSourceStat: true
+  mvc:
+    static-path-pattern: /resources/**
+    thymeleaf:  # default thymeleaf configuration
+      enabled: true
+      prefix: classpath:/templates/
+      mode: HTML
+      suffix: .html
+      encoding: UTF-8
+      cache: false  # 默认是开启缓存，但开发阶段为了快速看到修改效果应设置为false。spring-boot-devtools会自动应用开发时敏感的配置（参考DevToolsPropertyDefaultsPostProcessor）
+    http:
+      log-request-details: true # 默认为false，不打印请求详情。开发阶段可以开启此选项来打印出请求的详情，方便调试
+  security: # 配置Spring Security
+
+
+
+mybatis:
+  config-location=classpath: mybatis/mybatis-config.xml
+  mapper-locations=classpath: mybatis/mapper/*.xml
+

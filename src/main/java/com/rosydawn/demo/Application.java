@@ -1,5 +1,6 @@
 package com.rosydawn.demo;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,6 +29,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * spring.autoconfigure.exclude属性exclude多个自动配置项（一个自动配置项集合） 。
  */
 @SpringBootApplication
+@MapperScan("com.rosydawn.demo.**.dao")
 public class Application extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

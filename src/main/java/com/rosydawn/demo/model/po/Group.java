@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户组
@@ -14,14 +15,18 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
-public class Dept {
+public class Group {
     private Long logicId;
 
-    private String name;
+    private String groupName;
 
     private String remark;
 
-    private BooleanEnum deletedEnum;
+    private BooleanEnum deleted;
+
+    private List<Role> roleList;
+
+    private BooleanEnum deleteEnum;
 
     private User creator;
 

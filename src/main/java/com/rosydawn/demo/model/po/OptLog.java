@@ -1,67 +1,45 @@
 package com.rosydawn.demo.model.po;
 
-import com.rosydawn.demo.model.BaseModel;
+import com.rosydawn.demo.constants.enums.BooleanEnum;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class OptLog extends BaseModel {
+import java.util.Date;
 
-    private String userName;
+/**
+ * 用户组
+ *
+ * @auther: Vincent Huang
+ * Created on 2019/7/10 16:14
+ */
+@Data
+@NoArgsConstructor
+public class OptLog {
+	private Long logicId;
 
-    private String operation;
+	private Long userId;
 
-    private String method;
+	private String operation;
+
+	private String method;
 
     private String params;
 
-    private Long time;
+    private Long duration;
 
     private String ip;
 
-	public String getUserName() {
-		return userName;
-	}
+    private String localIp;
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    private BooleanEnum needToWarnEnum;
 
-	public String getOperation() {
-		return operation;
-	}
+	private User creator;
 
-	public void setOperation(String operation) {
-		this.operation = operation;
-	}
+	private Date createTime;
 
-	public String getMethod() {
-		return method;
-	}
+	private User modifier;
 
-	public void setMethod(String method) {
-		this.method = method;
-	}
+	private Date updateTime;
 
-	public String getParams() {
-		return params;
-	}
-
-	public void setParams(String params) {
-		this.params = params;
-	}
-
-	public Long getTime() {
-		return time;
-	}
-
-	public void setTime(Long time) {
-		this.time = time;
-	}
-
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
 
 }

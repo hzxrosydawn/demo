@@ -1,8 +1,9 @@
 package com.rosydawn.demo.security;
 
-import com.rosydawn.demo.constants.BooleanEnum;
-import com.rosydawn.demo.model.po.UserRole;
-import com.rosydawn.demo.model.po.UserGroup;
+import com.rosydawn.demo.constants.enums.BooleanEnum;
+import com.rosydawn.demo.model.po.Dept;
+import com.rosydawn.demo.model.po.Role;
+import com.rosydawn.demo.model.po.Group;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,6 +32,11 @@ public class JwtUserDetails implements UserDetails {
     private Long logicId;
 
     /**
+     * 登录用户名，邮箱用户名
+     */
+    private String loginName;
+
+    /**
      * 注册邮箱
      */
     private String email;
@@ -38,7 +44,7 @@ public class JwtUserDetails implements UserDetails {
     /**
      * 用户姓名
      */
-    private String name;
+    private String chineseName;
 
     /**
      * 经过摘要计算的用户密码
@@ -46,27 +52,32 @@ public class JwtUserDetails implements UserDetails {
     private String hashedPassword;
 
     /**
-     * 用户的部门Id
+     * 用户的部门
      */
-    private Long deptId;
+    private Dept dept;
 
     /**
-     * 帐号是否过期
+     * 用户是否过期
      */
-    private BooleanEnum accountExpired;
+    private BooleanEnum userNonExpiredEnum;
 
     /**
-     * 帐号是否锁定
+     * 用户是否锁定
      */
-    private BooleanEnum accountLocked;
+    private BooleanEnum userNonLockedEnum;
 
     /**
-     * 密码是否过期
+     * 用户密码是否过期
      */
-    private BooleanEnum credentialsExpired;
+    private BooleanEnum passwordNonExpiredEnum;
 
     /**
-     * 是否假删除
+     * 用户是否被禁用
+     */
+    private BooleanEnum enabledEnum;
+
+    /**
+     * 用户是否被假删除
      */
     private BooleanEnum deleted;
 
@@ -74,12 +85,14 @@ public class JwtUserDetails implements UserDetails {
 
     private Date updateTime;
 
-    private List<UserRole> userRoleList;
+    private List<Role> roleList;
 
-    private List<UserGroup> userGroupList;
+    private List<Group> groupList;
 
     /**
-     * 用户已经被授予的权限，可以从角色、用户组中提取、合并、去重后得出
+     * 根据自定义逻辑来返回用户权限，如果用户权限返回空或者和拦截路径对应权限不同，验证不通过
+     *
+     * 用户已经被授予的权限可以从角色、用户组中提取、合并、去重后得出
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -94,26 +107,38 @@ public class JwtUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.email;
+        return this.loginName;
     }
 
+    /**
+     * 帐号是否不过期，false则验证不通过
+     */
     @Override
     public boolean isAccountNonExpired() {
-        return this.accountExpired == BooleanEnum.FALSE;
+        return BooleanEnum.TRUE == this.userNonExpiredEnum;
     }
 
+    /**
+     * 帐号是否未锁定，false则验证不通过
+     */
     @Override
     public boolean isAccountNonLocked() {
-        return this.accountLocked == BooleanEnum.FALSE;
+        return this.userNonLockedEnum == BooleanEnum.TRUE;
     }
 
+    /**
+     * 密码是否未过期，false则验证不通过
+     */
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.credentialsExpired == BooleanEnum.FALSE;
+        return BooleanEnum.TRUE == this.passwordNonExpiredEnum;
     }
 
+    /**
+     * 帐号是否可用，false则验证不通过
+     */
     @Override
     public boolean isEnabled() {
-        return this.deleted == BooleanEnum.FALSE;
+        return BooleanEnum.TRUE == this.enabledEnum;
     }
 }

@@ -1,25 +1,31 @@
 package com.rosydawn.demo.model.po;
 
+import com.rosydawn.demo.constants.enums.BooleanEnum;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+/**
+ * @auther: Vincent Huang
+ * Created on 2019/7/11 15:15
+ */
+@Data
+@NoArgsConstructor
 public class RoleMenu {
+    private Long logicId;
 
-    private Long roleId;
+    private Role role;
 
-    private Long menuId;
+    private Menu menu;
 
-	public Long getRoleId() {
-		return roleId;
-	}
+    private BooleanEnum deletedEnum;
 
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
-	}
+    private User creator;
 
-	public Long getMenuId() {
-		return menuId;
-	}
+    private Date createTime;
 
-	public void setMenuId(Long menuId) {
-		this.menuId = menuId;
-	}
+    private User modifier;
 
+    private Date updateTime;
 }

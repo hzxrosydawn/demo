@@ -1,77 +1,43 @@
 package com.rosydawn.demo.model.po;
 
-import com.rosydawn.demo.model.BaseModel;
+import com.rosydawn.demo.constants.enums.BooleanEnum;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class Dict extends BaseModel {
+import java.util.Date;
+
+/**
+ * 用户组
+ *
+ * @auther: Vincent Huang
+ * Created on 2019/7/10 16:14
+ */
+@Data
+@NoArgsConstructor
+public class Dict {
+	private Long logicId;
+
+	private String item;
 
     private String value;
 
-    private String label;
-
     private String type;
+
+    private String label;
 
     private String description;
 
-    private Long sort;
+    private Integer sort;
 
-    private String remarks;
+    private String remark;
 
-    private Byte delFlag;
+    private BooleanEnum deleteEnum;
 
-	public String getValue() {
-		return value;
-	}
+    private User creator;
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    private Date createTime;
 
-	public String getLabel() {
-		return label;
-	}
+    private User modifier;
 
-	public void setLabel(String label) {
-		this.label = label;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Long getSort() {
-		return sort;
-	}
-
-	public void setSort(Long sort) {
-		this.sort = sort;
-	}
-
-	public String getRemarks() {
-		return remarks;
-	}
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
-
-	public Byte getDelFlag() {
-		return delFlag;
-	}
-
-	public void setDelFlag(Byte delFlag) {
-		this.delFlag = delFlag;
-	}
-
+    private Date updateTime;
 }

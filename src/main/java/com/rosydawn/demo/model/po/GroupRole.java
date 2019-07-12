@@ -7,21 +7,19 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
- * 用户组
- *
  * @auther: Vincent Huang
- * Created on 2019/7/10 16:14
+ * Created on 2019/7/11 15:24
  */
 @Data
 @NoArgsConstructor
-public class Dept {
+public class GroupRole {
     private Long logicId;
 
-    private String name;
+    private Group group;
 
-    private String remark;
+    private Role role;
 
-    private BooleanEnum deletedEnum;
+    private BooleanEnum deleteEnum;
 
     private User creator;
 

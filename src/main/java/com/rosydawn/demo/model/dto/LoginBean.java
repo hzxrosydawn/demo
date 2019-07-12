@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class LoginBean {
-	private String email;
+	private String loginName;
 	private String password;
-	private String captcha;
+//	private String captcha;
 }

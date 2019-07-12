@@ -7,19 +7,25 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
- * 用户组
- *
  * @auther: Vincent Huang
- * Created on 2019/7/10 16:14
+ * Created on 2019/7/11 11:07
  */
 @Data
 @NoArgsConstructor
-public class Dept {
+public class ProductAddress {
     private Long logicId;
 
-    private String name;
+    private Product product;
 
-    private String remark;
+    /**
+     * ip 地址
+     */
+    private String address;
+
+    /**
+     * 端口号
+     */
+    private String port;
 
     private BooleanEnum deletedEnum;
 
@@ -30,4 +36,5 @@ public class Dept {
     private User modifier;
 
     private Date updateTime;
+
 }

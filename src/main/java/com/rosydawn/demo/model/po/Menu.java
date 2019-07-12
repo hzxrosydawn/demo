@@ -1,120 +1,43 @@
 package com.rosydawn.demo.model.po;
 
-import com.rosydawn.demo.model.BaseModel;
+import com.rosydawn.demo.constants.enums.BooleanEnum;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Date;
 
-public class Menu extends BaseModel {
-
-    private Long parentId;
+/**
+ * 用户组
+ *
+ * @auther: Vincent Huang
+ * Created on 2019/7/10 16:14
+ */
+@Data
+@NoArgsConstructor
+public class Menu {
+	private Long logicId;
 
     private String name;
 
+    private String remark;
+
     private String url;
+
+    private Long parentId;
 
     private String perms;
 
     private Integer type;
 
-    private String icon;
-
     private Integer orderNum;
 
-    private Byte delFlag;
+    private BooleanEnum deleteEnum;
 
-    // 非数据库字段
-    private String parentName;
-    // 非数据库字段
-    private Integer level;
-    // 非数据库字段
-    private List<Menu> children;
-    
-	public Long getParentId() {
-		return parentId;
-	}
+	private User creator;
 
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
-	}
+	private Date createTime;
 
-	public String getName() {
-		return name;
-	}
+	private User modifier;
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getPerms() {
-		return perms;
-	}
-
-	public void setPerms(String perms) {
-		this.perms = perms;
-	}
-
-	public Integer getType() {
-		return type;
-	}
-
-	public void setType(Integer type) {
-		this.type = type;
-	}
-
-	public String getIcon() {
-		return icon;
-	}
-
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
-
-	public Integer getOrderNum() {
-		return orderNum;
-	}
-
-	public void setOrderNum(Integer orderNum) {
-		this.orderNum = orderNum;
-	}
-
-	public Byte getDelFlag() {
-		return delFlag;
-	}
-
-	public void setDelFlag(Byte delFlag) {
-		this.delFlag = delFlag;
-	}
-
-	public List<Menu> getChildren() {
-		return children;
-	}
-
-	public void setChildren(List<Menu> children) {
-		this.children = children;
-	}
-
-	public Integer getLevel() {
-		return level;
-	}
-
-	public void setLevel(Integer level) {
-		this.level = level;
-	}
-
-	public String getParentName() {
-		return parentName;
-	}
-
-	public void setParentName(String parentName) {
-		this.parentName = parentName;
-	}
-	
+	private Date updateTime;
 }

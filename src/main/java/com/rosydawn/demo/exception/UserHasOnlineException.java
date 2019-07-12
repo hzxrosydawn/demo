@@ -1,7 +1,7 @@
 package com.rosydawn.demo.exception;
 
 
-import com.rosydawn.demo.constants.CodeMsg;
+import com.rosydawn.demo.constants.enums.BusinessCodeMsgEnum;
 
 /**
  *
@@ -9,7 +9,7 @@ import com.rosydawn.demo.constants.CodeMsg;
  * Created on 2019/7/8 9:24
  */
 public class UserHasOnlineException extends BusinessException {
-    public UserHasOnlineException(CodeMsg msg){
+    public UserHasOnlineException(BusinessCodeMsgEnum msg){
         super(msg);
     }
 }

@@ -62,7 +62,7 @@
         <druid.version>1.1.18</druid.version>
         <spring.cloud.version></spring.cloud.version>
         <jsonwebtoken.version>0.9.1</jsonwebtoken.version>
-        <springfox-swagger.version>2.9.2</springfox-swagger.version>
+        <springfox-swagger.version>2.10.0</springfox-swagger.version>
         <lombok.version>1.18.8</lombok.version>
         <kaptcha.version>2.3.2</kaptcha.version>
         <thymeleaf-springsecurity4.version>3.0.4.RELEASE</thymeleaf-springsecurity4.version>
